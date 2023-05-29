@@ -133,6 +133,9 @@ class _HtmlEditorWidgetMobileState extends State<HtmlEditorWidget> {
                   initialFile: filePath,
                   onWebViewCreated: (InAppWebViewController controller) {
                     widget.controller.editorController = controller;
+                    controller.addJavaScriptHandler(handlerName: 'onImageClick', callback: (e){
+                      return widget.callbacks?.onImageClick?.call(e);
+                    });
                     controller.addJavaScriptHandler(
                         handlerName: 'FormatSettings',
                         callback: (e) {
